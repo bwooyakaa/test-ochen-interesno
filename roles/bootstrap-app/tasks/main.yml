@@ -5,9 +5,6 @@
     dest: "{{app_work_dir}}"
     version: master
     accept_hostkey: yes
-    key_file: /home/{{current_user}}/.ssh/id_rsa
-  tags:
-    - clone-repo
 
 - name: Check for Composer
   stat:
