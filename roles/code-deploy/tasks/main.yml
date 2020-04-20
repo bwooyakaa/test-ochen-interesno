@@ -37,13 +37,13 @@
 
 #
 
--name: Install static dependencies 
+- name: Install static dependencies 
   npm:
     path: {{app_work_dir}}
     state: latest
 #
 
--name: Npm run production
+- name: Npm run production
   shell: "nmp {{app_work_dir}} run production"
 
 
