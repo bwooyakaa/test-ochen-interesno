@@ -4,7 +4,6 @@
     repo: "{{repo_git_url}}"
     dest: "{{app_work_dir}}"
     version: master
-    accept_hostkey: yes
 
 - name: Check for Composer
   stat:
