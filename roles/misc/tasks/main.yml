@@ -1,0 +1,10 @@
+---
+- name: Update yum packages
+  yum:
+    update_cache: yes
+##
+- name: Install GIT VCS
+  yum:
+    name: git
+    state: latest
+

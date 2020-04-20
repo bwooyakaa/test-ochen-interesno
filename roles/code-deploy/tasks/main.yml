@@ -1,0 +1,49 @@
+---
+#
+- name: Make sure composer is at its latest version
+  composer:
+    working_dir: "{{ app_work_dir }}"
+    command: self-update
+  register: composer_self_update
+  changed_when: "not composer_self_update.stdout|search('You are already using composer version')"
+
+#
+- name: Install packages
+  composer:
+    command: install
+    working_dir: "{{ app_work_dir }}"
+#
+- name: Reset any local changes
+  shell: "cd {{app_work_dir}} && git reset --hard"
+#
+- name: update repo - pull the latest changes
+  git:
+    repo: "{{repo_git_url}}"
+    dest: "{{app_work_dir}}"
+    update: yes
+    version: master
+    accept_hostkey: yes
+    key_file: /home/{{current_user}}/.ssh/id_rsa
+
+#
+
+- name: Copy .env
+  shell: "cp {{app_work_dir}}/example.env .env"
+
+#
+
+- name: Run artisan key:generate
+  shell: "php {{app_work_dir}} artisan key:generate"
+
+#
+
+-name: Install static dependencies 
+  npm:
+    path: {{app_work_dir}}
+    state: latest
+#
+
+-name: Npm run production
+  shell: "nmp {{app_work_dir}} run production"
+
+

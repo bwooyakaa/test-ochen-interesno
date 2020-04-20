@@ -1,0 +1,16 @@
+---
+- hosts: test_laravelapp
+  sudo: yes
+  gather_facts: no
+
+  vars_files:
+    - ./group_vars/vars.yml
+  roles:
+    - misc
+    - php
+    - nginx
+    - bootstrap-app
+    - code-deploy
+###
+  handlers:
+    - include: handlers/main.yml
