@@ -6,6 +6,6 @@ server_name: "centos7"
 app_url: "test_app.centos7"
 
 repo_git_url: "https://github.com/Saritasa/simplephpapp"
-php_version: 7.3
-app_work_dir: /var/www/projects/test_app
+php_version: "7.3"
+app_work_dir: "/var/www/projects/test_app"
 
